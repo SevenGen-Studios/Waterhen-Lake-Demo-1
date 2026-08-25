@@ -1,3 +1,5 @@
+import { communityPosts } from './community-posts';
+
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 export default function Home() {
@@ -108,20 +110,15 @@ export default function Home() {
 
       <section className="updates-section" id="news">
         <div className="section-heading light">
-          <div><p className="eyebrow">Community updates</p><h2>What members need to know.</h2></div>
-          <a className="outline-link light-link" href="#news">View all updates <Arrow /></a>
+          <div><p className="eyebrow">Community updates</p><h2>Latest from the community.</h2></div>
+          <div className="meta-connection"><span aria-hidden="true">f</span><p><strong>Facebook Page connected</strong><small>Demo feed · Last synced August 25, 2026</small></p></div>
         </div>
-        <div className="updates-grid">
-          <article className="featured-update">
-            <span className="tag">Notice placeholder</span>
-            <h3>High-priority community information would lead this section.</h3>
-            <p>Published only after approval from an authorized Waterhen Lake administrator.</p>
-          </article>
-          <div className="update-list">
-            <article><span>Employment</span><h3>Current job opportunities and application details</h3><a href="#opportunities">Open listing →</a></article>
-            <article><span>Programs</span><h3>Application deadlines and upcoming services</h3><a href="#services">View programs →</a></article>
-            <article><span>Events</span><h3>Community gatherings and important dates</h3><a href="#contact">View calendar →</a></article>
-          </div>
+        <p className="feed-disclaimer">Demonstration of a Meta Page API integration using manually captured public posts. Dates and details should be confirmed with the original publisher.</p>
+        <div className="social-feed">
+          {communityPosts.map((post, index) => <article className={index === 0 ? 'social-post featured-social-post' : 'social-post'} key={post.id}>
+            <div className="social-media">{post.images.map((image, imageIndex) => <img src={image} alt={`${post.title}${post.images.length > 1 ? ` — page ${imageIndex + 1}` : ''}`} key={image} />)}</div>
+            <div className="social-copy"><div><span>{post.category}</span><small>{post.date}</small></div><h3>{post.title}</h3><p>{post.summary}</p><div className="social-source"><span aria-hidden="true">f</span><small>Posted by {post.source}</small></div></div>
+          </article>)}
         </div>
       </section>
 
