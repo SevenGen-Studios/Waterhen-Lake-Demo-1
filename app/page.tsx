@@ -2,6 +2,12 @@ import { communityPosts } from './community-posts';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
+const departmentUpdates = [
+  { name: 'Education', description: 'School dates, registration and family information.', posts: communityPosts.filter(post => post.category === 'Education') },
+  { name: 'Health & Wellness', description: 'Clinic hours, closures and wellness programs.', posts: communityPosts.filter(post => post.category === 'Health') },
+  { name: 'Family & Community', description: 'Programs, workshops and family events.', posts: communityPosts.filter(post => ['Family', 'Community event'].includes(post.category)) },
+];
+
 export default function Home() {
   return (
     <main>
@@ -105,21 +111,11 @@ export default function Home() {
             </a>
           ))}
         </div>
+        <div className="department-updates" id="news">
+          <div className="native-section-heading"><p className="eyebrow">Current information</p><h3>Updates where members expect to find them.</h3><p>Each notice is automatically routed to the service area it belongs to.</p></div>
+          {departmentUpdates.map(group => <section className="department-update-group" key={group.name}><header><div><span>{group.posts.length} current</span><h3>{group.name}</h3></div><p>{group.description}</p></header>{group.posts.map(post => <details className="native-notice" key={post.id}><summary><span><small>{post.date}</small><strong>{post.title}</strong></span><b>View details</b></summary><div className="native-notice-body"><div className="native-notice-images">{post.images.map((image, imageIndex) => <img src={image} alt={`${post.title}${post.images.length > 1 ? ` — page ${imageIndex + 1}` : ''}`} key={image}/>)}</div><div><p>{post.summary}</p><small>Source: {post.source} · Community information import</small></div></div></details>)}</section>)}
+        </div>
         <p className="verification-note">Department names and descriptions are representative placeholders to be confirmed by Waterhen Lake First Nation.</p>
-      </section>
-
-      <section className="updates-section" id="news">
-        <div className="section-heading light">
-          <div><p className="eyebrow">Community updates</p><h2>Latest from the community.</h2></div>
-          <div className="meta-connection"><span aria-hidden="true">f</span><p><strong>Facebook Page connected</strong><small>Demo feed · Last synced August 25, 2026</small></p></div>
-        </div>
-        <p className="feed-disclaimer">Demonstration of a Meta Page API integration using manually captured public posts. Dates and details should be confirmed with the original publisher.</p>
-        <div className="social-feed">
-          {communityPosts.map((post, index) => <article className={index === 0 ? 'social-post featured-social-post' : 'social-post'} key={post.id}>
-            <div className="social-media">{post.images.map((image, imageIndex) => <img src={image} alt={`${post.title}${post.images.length > 1 ? ` — page ${imageIndex + 1}` : ''}`} key={image} />)}</div>
-            <div className="social-copy"><div><span>{post.category}</span><small>{post.date}</small></div><h3>{post.title}</h3><p>{post.summary}</p><div className="social-source"><span aria-hidden="true">f</span><small>Posted by {post.source}</small></div></div>
-          </article>)}
-        </div>
       </section>
 
       <section className="opportunities-section" id="opportunities">
@@ -130,11 +126,7 @@ export default function Home() {
           <p>A dedicated place to showcase Waterhen’s development corporation, Nation-owned enterprises, partnerships, procurement and employment opportunities.</p>
           <a className="primary-button" href="#contact">Explore opportunities <span>→</span></a>
         </div>
-        <div className="opportunity-cards">
-          <article><span>01</span><h3>Business directory</h3><p>Connect visitors with community and Nation-owned businesses.</p></article>
-          <article><span>02</span><h3>Jobs & procurement</h3><p>Publish employment, tenders and partnership opportunities.</p></article>
-          <article><span>03</span><h3>Tourism</h3><p>Present Waterhen’s lake, hospitality and visitor experiences.</p></article>
-        </div>
+        <div className="opportunity-cards">{communityPosts.filter(post => post.category === 'Employment').map((post, index) => <details className="employment-listing" key={post.id}><summary><span>0{index + 1}</span><div><small>Employment · {post.date}</small><h3>{post.title}</h3><p>{post.summary}</p></div><b>View posting</b></summary><div className="employment-documents">{post.images.map((image, imageIndex) => <img src={image} alt={`${post.title} — document ${imageIndex + 1}`} key={image}/>)}</div><small>Source: {post.source}</small></details>)}</div>
       </section>
 
       <section className="contact-section" id="contact">
