@@ -111,11 +111,12 @@ export default function Home() {
             </a>
           ))}
         </div>
-        <div className="department-updates" id="news">
+        <p className="verification-note">Department names and descriptions are representative placeholders to be confirmed by Waterhen Lake First Nation.</p>
+      </section>
+
+      <section className="department-updates" id="news">
           <div className="native-section-heading"><p className="eyebrow">Current information</p><h3>Updates where members expect to find them.</h3><p>Each notice is automatically routed to the service area it belongs to.</p></div>
           {departmentUpdates.map(group => <section className="department-update-group" key={group.name}><header><div><span>{group.posts.length} current</span><h3>{group.name}</h3></div><p>{group.description}</p></header>{group.posts.map(post => <details className="native-notice" key={post.id}><summary><span><small>{post.date}</small><strong>{post.title}</strong></span><b>View details</b></summary><div className="native-notice-body"><div className="native-notice-images">{post.images.map((image, imageIndex) => <img src={image} alt={`${post.title}${post.images.length > 1 ? ` — page ${imageIndex + 1}` : ''}`} key={image}/>)}</div><div><p>{post.summary}</p><small>Source: {post.source} · Community information import</small></div></div></details>)}</section>)}
-        </div>
-        <p className="verification-note">Department names and descriptions are representative placeholders to be confirmed by Waterhen Lake First Nation.</p>
       </section>
 
       <section className="opportunities-section" id="opportunities">
