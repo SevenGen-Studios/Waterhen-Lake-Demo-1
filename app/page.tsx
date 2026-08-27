@@ -18,7 +18,7 @@ export default function Home() {
       </div>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Waterhen Lake First Nation home">
-          <span className="brand-mark">WL</span>
+          <img className="brand-mark" src="/waterhen-emblem.jpg" alt="Waterhen Lake First Nation emblem" />
           <span className="brand-copy"><strong>Waterhen Lake</strong><small>First Nation</small></span>
         </a>
         <nav aria-label="Main navigation">
@@ -144,7 +144,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <div className="footer-brand"><span className="brand-mark">WL</span><strong>Waterhen Lake First Nation</strong></div>
+        <div className="footer-brand"><img className="brand-mark" src="/waterhen-emblem.jpg" alt="" /><strong>Waterhen Lake First Nation</strong></div>
         <p>This private concept uses public information from Indigenous Services Canada, Meadow Lake Tribal Council and publicly accessible community sources. All content requires Nation approval before official use.</p>
         <div className="footer-credit"><span>Concept website</span><strong>Developed by OpenBand</strong><a href="https://openband.ca">openband.ca <Arrow /></a></div>
       </footer>
