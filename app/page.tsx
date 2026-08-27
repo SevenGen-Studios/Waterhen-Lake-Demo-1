@@ -1,6 +1,7 @@
 import { communityPosts } from './community-posts';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
+const featuredNotice = communityPosts[0];
 
 const departmentUpdates = [
   { name: 'Education', description: 'School dates, registration and family information.', posts: communityPosts.filter(post => post.category === 'Education') },
@@ -49,9 +50,11 @@ export default function Home() {
           </div>
         </div>
         <aside className="notice-card" aria-label="Community notice">
-          <div className="notice-label"><span /> Community notice</div>
-          <p>Official notices and emergency updates would appear here.</p>
-          <a href="#news">View all updates <span>→</span></a>
+          <div className="notice-label"><span /> Education notice</div>
+          <div className="notice-meta">{featuredNotice.date} · {featuredNotice.source}</div>
+          <p>{featuredNotice.title}</p>
+          <small className="notice-summary">{featuredNotice.summary}</small>
+          <a href="#news">View Education notices <span>→</span></a>
         </aside>
       </section>
 
